@@ -82,26 +82,26 @@ $ cd gcp_cicd_test/example/hello-world
 ### Done!
 
 # +) Deploy to the Compute Engine
-
-1. Go to the directory that has the source code for the `remote-builder` Docker image:
+1. Enable "Compute instance administrator(v1) (Compute 인스턴스 관리자(v1))" on the Cloud Build > Setting
+2. Go to the directory that has the source code for the `remote-builder` Docker image:
 
    ```sh
    $ cd cloud-builders-community/remote-builder
    ```
    
-2. build the 'remote-builder':
+3. build the 'remote-builder':
 
    ```sh
    $ gcloud builds submit --config=cloudbuild.yaml .
    ```
    
-3. Check 'remote-builder' is build successfully
+4. Check 'remote-builder' is build successfully
 
    ```sh
    $ gcloud container images list --filter remote-builder
    ```
    
-4. Create an appropriate IAM role with permissions to create and destroy Compute Engine instances in this project:
+5. Create an appropriate IAM role with permissions to create and destroy Compute Engine instances in this project:
 
    ```sh
    $ export PROJECT=$(gcloud info --format='value(config.project)')
@@ -111,4 +111,4 @@ $ cd gcp_cicd_test/example/hello-world
    $ gcloud services enable compute.googleapis.com
    $ gcloud projects add-iam-policy-binding $PROJECT --member=serviceAccount:$CB_SA_EMAIL --role='roles/iam.serviceAccountUser' --role='roles/compute.instanceAdmin.v1' --role='roles/iam.serviceAccountActor' --role='roles/compute.serviceAgent'
    ```
-5. Test your Trigger
+6. Test your Trigger
