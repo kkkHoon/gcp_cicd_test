@@ -109,6 +109,6 @@ $ cd gcp_cicd_test/example/hello-world
    $ export CB_SA_EMAIL=$PROJECT_NUMBER@cloudbuild.gserviceaccount.com
    $ gcloud services enable cloudbuild.googleapis.com
    $ gcloud services enable compute.googleapis.com
-   $ gcloud projects add-iam-policy-binding $PROJECT --member=serviceAccount:$CB_SA_EMAIL --role='roles/iam.serviceAccountUser' --role='roles/compute.instanceAdmin.v1' --role='roles/iam.serviceAccountActor'
+   $ gcloud projects add-iam-policy-binding $PROJECT --member=serviceAccount:$CB_SA_EMAIL --role='roles/iam.serviceAccountUser' --role='roles/compute.instanceAdmin.v1' --role='roles/iam.serviceAccountActor' --role='roles/compute.serviceAgent'
    ```
 5. Test your Trigger
