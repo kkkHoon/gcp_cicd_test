@@ -7,6 +7,7 @@ This project is for testing the Cloud Build using docker-compose command
 # References
 1. [GoogleCloudPlatform/cloud-builders-community](https://github.com/GoogleCloudPlatform/cloud-builders-community)
 2. [Google Cloud Build를 사용한 CI/CD](https://zzsza.github.io/gcp/2020/05/09/google-cloud-build/)
+3. [App Engine에 배포](https://cloud.google.com/build/docs/deploying-builds/deploy-appengine?hl=ko)
 
 # Steps
 
@@ -21,6 +22,8 @@ This project is for testing the Cloud Build using docker-compose command
    2. `./google-cloud-sdk/bin/cloud init`
       1. select the project which you created on the above step 1
 3. Enable [Cloud Build API](https://console.cloud.google.com/flows/enableapi?apiid=cloudbuild.googleapis.com&redirect=https%3A%2F%2Fcloud.google.com%2Fcloud-build%2Fdocs%2Fquickstart-build&hl=ko&_ga=2.211218646.273633348.1588992492-151274966.1565535538)
+4. Enable [App Engine Admin API](https://console.cloud.google.com/apis/library/appengine.googleapis.com?hl=ko&_ga=2.190168747.1892360827.1666425859-1779703515.1664174648&_gac=1.49166804.1666425864.Cj0KCQjwqc6aBhC4ARIsAN06NmPFd8NP96PVQ51tCsWsTsVXsk6jw8CIIl6NAqqDItp1xcHKhhfrhCoaAtLoEALw_wcB)
+5. Add role 'App Engine Administrator(App Engine 관리자)' and 'Service account user(서비스 계정 사용자)' from [here](https://console.cloud.google.com/cloud-build/settings?hl=ko&_ga=2.82663190.1892360827.1666425859-1779703515.1664174648&_gac=1.53351514.1666425864.Cj0KCQjwqc6aBhC4ARIsAN06NmPFd8NP96PVQ51tCsWsTsVXsk6jw8CIIl6NAqqDItp1xcHKhhfrhCoaAtLoEALw_wcB)
 
 ### Step 2. Build [Cloud build](https://cloud.google.com/build/docs/cloud-builders?hl=ko)
 1. Clone the `cloud-builders-community` repo:
