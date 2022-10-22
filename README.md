@@ -2,12 +2,12 @@
 GCP CI/CD test using Cloud Build
 
 # Introduction
-This project is for testing the Cloud Build using docker-compose command
+This project is for testing the Cloud Build using docker-compose command (+remote-builder)
 
 # References
 1. [GoogleCloudPlatform/cloud-builders-community](https://github.com/GoogleCloudPlatform/cloud-builders-community)
 2. [Google Cloud Build를 사용한 CI/CD](https://zzsza.github.io/gcp/2020/05/09/google-cloud-build/)
-3. [App Engine에 배포](https://cloud.google.com/build/docs/deploying-builds/deploy-appengine?hl=ko)
+3. [Cloud Build Remote Build Step](https://github.com/GoogleCloudPlatform/cloud-builders-community/tree/master/remote-builder)
 
 # Steps
 
@@ -22,8 +22,6 @@ This project is for testing the Cloud Build using docker-compose command
    2. `./google-cloud-sdk/bin/cloud init`
       1. select the project which you created on the above step 1
 3. Enable [Cloud Build API](https://console.cloud.google.com/flows/enableapi?apiid=cloudbuild.googleapis.com&redirect=https%3A%2F%2Fcloud.google.com%2Fcloud-build%2Fdocs%2Fquickstart-build&hl=ko&_ga=2.211218646.273633348.1588992492-151274966.1565535538)
-4. Enable [App Engine Admin API](https://console.cloud.google.com/apis/library/appengine.googleapis.com?hl=ko&_ga=2.190168747.1892360827.1666425859-1779703515.1664174648&_gac=1.49166804.1666425864.Cj0KCQjwqc6aBhC4ARIsAN06NmPFd8NP96PVQ51tCsWsTsVXsk6jw8CIIl6NAqqDItp1xcHKhhfrhCoaAtLoEALw_wcB)
-5. Add role 'App Engine Administrator(App Engine 관리자)' and 'Service account user(서비스 계정 사용자)' from [here](https://console.cloud.google.com/cloud-build/settings?hl=ko&_ga=2.82663190.1892360827.1666425859-1779703515.1664174648&_gac=1.53351514.1666425864.Cj0KCQjwqc6aBhC4ARIsAN06NmPFd8NP96PVQ51tCsWsTsVXsk6jw8CIIl6NAqqDItp1xcHKhhfrhCoaAtLoEALw_wcB)
 
 ### Step 2. Build [Cloud build](https://cloud.google.com/build/docs/cloud-builders?hl=ko)
 1. Clone the `cloud-builders-community` repo:
@@ -82,3 +80,35 @@ $ cd gcp_cicd_test/example/hello-world
 ### Step 5. Test your Trigger
 
 ### Done!
+
+# +) Deploy to the Compute Engine
+
+1. Go to the directory that has the source code for the `remote-builder` Docker image:
+
+   ```sh
+   $ cd cloud-builders-community/remote-builder
+   ```
+   
+2. build the 'remote-builder':
+
+   ```sh
+   $ gcloud builds submit --config=cloudbuild.yaml .
+   ```
+   
+3. Check 'remote-builder' is build successfully
+
+   ```sh
+   $ gcloud container images list --filter remote-builder
+   ```
+   
+4. Create an appropriate IAM role with permissions to create and destroy Compute Engine instances in this project:
+
+   ```sh
+   $ export PROJECT=$(gcloud info --format='value(config.project)')
+   $ export PROJECT_NUMBER=$(gcloud projects describe $PROJECT --format 'value(projectNumber)')
+   $ export CB_SA_EMAIL=$PROJECT_NUMBER@cloudbuild.gserviceaccount.com
+   $ gcloud services enable cloudbuild.googleapis.com
+   $ gcloud services enable compute.googleapis.com
+   $ gcloud projects add-iam-policy-binding $PROJECT --member=serviceAccount:$CB_SA_EMAIL --role='roles/iam.serviceAccountUser' --role='roles/compute.instanceAdmin.v1' --role='roles/iam.serviceAccountActor'
+   ```
+5. Test your Trigger
