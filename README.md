@@ -8,6 +8,11 @@ This project is for testing the Cloud Build using docker-compose command (+remot
 1. [GoogleCloudPlatform/cloud-builders-community](https://github.com/GoogleCloudPlatform/cloud-builders-community)
 2. [Google Cloud Build를 사용한 CI/CD](https://zzsza.github.io/gcp/2020/05/09/google-cloud-build/)
 3. [Cloud Build Remote Build Step](https://github.com/GoogleCloudPlatform/cloud-builders-community/tree/master/remote-builder)
+4. [Permission error in GCP when creating a new compute instance but service account does have permissions](https://stackoverflow.com/questions/72701163/permission-error-in-gcp-when-creating-a-new-compute-instance-but-service-account)
+5. [인스턴스 생성 및 구성](https://cloud.google.com/container-optimized-os/docs/how-to/create-configure-instance)
+6. [Is it viable to run multiple containers on Google Compute Engine VM Instances running Container Optimized OS?](https://serverfault.com/questions/1032347/is-it-viable-to-run-multiple-containers-on-google-compute-engine-vm-instances-ru)
+7. [Simple Installer for Docker Compose on Container-Optimized OS on Google Computing Engine](https://gist.github.com/kurokobo/25e41503eb060fee8d8bec1dd859eff3)
+8. 
 
 # Steps
 
@@ -19,7 +24,7 @@ This project is for testing the Cloud Build using docker-compose command (+remot
    1. `./google-cloud-sdk/install.sh`
       1. install python using install.sh
       2. add ./google-cloud-sdk/bin direcotry to the `$PATH`
-   2. `./google-cloud-sdk/bin/cloud init`
+   2. `./google-cloud-sdk/bin/gcloud init`
       1. select the project which you created on the above step 1
 3. Enable [Cloud Build API](https://console.cloud.google.com/flows/enableapi?apiid=cloudbuild.googleapis.com&redirect=https%3A%2F%2Fcloud.google.com%2Fcloud-build%2Fdocs%2Fquickstart-build&hl=ko&_ga=2.211218646.273633348.1588992492-151274966.1565535538)
 
