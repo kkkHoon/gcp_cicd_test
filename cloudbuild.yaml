@@ -4,4 +4,4 @@ steps:
     args:
       - '-c'
       - |
-        curl instance-2
+        curl instance-3
