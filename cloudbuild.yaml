@@ -1,4 +1,7 @@
 steps:
-  - name: gcr.io/$PROJECT_ID/remote-builder
-    env:
-      - COMMAND=curl instance-1
+  - name: gcr.io/cloud-builders/gcloud
+    entrypoint: /bin/bash
+    args:
+      - '-c'
+      - |
+        curl instance-2
