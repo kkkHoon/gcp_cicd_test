@@ -1,6 +1,7 @@
-- name: gcr.io/cloud-builders/gcloud
-  entrypoint: /bin/bash
-  args:
-    - '-c'
-    - |
-      cat /etc/resolv.conf
+steps:
+  - name: gcr.io/cloud-builders/gcloud
+    entrypoint: /bin/bash
+    args:
+      - '-c'
+      - |
+        cat /etc/resolv.conf
