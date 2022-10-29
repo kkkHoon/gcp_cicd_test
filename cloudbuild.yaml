@@ -4,4 +4,4 @@ steps:
     args:
       - '-c'
       - |
-        curl instance-3
+        cat /etc/hosts
