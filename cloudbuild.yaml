@@ -1,4 +1,4 @@
 steps:
   - name: gcr.io/$PROJECT_ID/remote-builder
     env:
-      - COMMAND=cat /etc/hosts
+      - COMMAND=cat /etc/resolv.conf
