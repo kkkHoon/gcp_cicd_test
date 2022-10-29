@@ -116,4 +116,4 @@ $ cd gcp_cicd_test/example/hello-world
    $ gcloud services enable compute.googleapis.com
    $ gcloud projects add-iam-policy-binding $PROJECT --member=serviceAccount:$CB_SA_EMAIL --role='roles/iam.serviceAccountUser' --role='roles/compute.instanceAdmin.v1' --role='roles/iam.serviceAccountActor' --role='roles/compute.serviceAgent'
    ```
-6. Test your Trigger..
+6. Test your Trigger...
