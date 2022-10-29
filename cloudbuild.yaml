@@ -4,4 +4,4 @@ steps:
     args:
       - '-c'
       - |
-        cat /etc/resolv.conf
+        curl instance-3
